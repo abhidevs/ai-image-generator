@@ -3,11 +3,20 @@ const { createOpenAiInstance } = require("../utils/createOpenAiInstance");
 const openai = createOpenAiInstance();
 
 const generateImage = async (req, res) => {
+    const { prompt, size } = req.body;
+
+    const imageSize =
+        size === "large"
+            ? "1024x1024"
+            : size === "medium"
+            ? "512x512"
+            : "256x256";
+
     try {
         const response = await openai.createImage({
-            prompt: "Polar bear on ice skates",
+            prompt: prompt,
             n: 1,
-            size: "512x512",
+            size: imageSize,
         });
 
         const imageUrl = response.data.data[0].url;
