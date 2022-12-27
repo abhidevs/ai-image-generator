@@ -23,7 +23,7 @@ const generateImage = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            data: imageUrl,
+            imageUrl: imageUrl,
         });
     } catch (error) {
         if (error.response) {
@@ -35,7 +35,7 @@ const generateImage = async (req, res) => {
 
         res.status(500).json({
             success: false,
-            error: "Something went wrong, unable to generate image",
+            message: "Something went wrong, unable to generate image",
         });
     }
 };
